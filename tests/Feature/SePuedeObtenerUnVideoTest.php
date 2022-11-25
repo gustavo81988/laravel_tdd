@@ -13,21 +13,15 @@ class SePuedeObtenerUnVideoTest extends TestCase
     use RefreshDatabase;
 
     public function testSePuedeObtenerUnVideoPorSuId(){
-        factory(Video::class)->create([
-            'id' => 1,
-            'titulo' => 'Mi titulo',
-            'descripcion' => 'Mi descripcion',
-            'url_video' => 'http://youtube.com/test'
-        ]);
+        $video = factory(Video::class)->create();
 
-        $respuesta = $this->get('/api/videos/1');
+        $respuesta = $this->get(
+            sprintf(
+                '/api/videos/1',
+                $video->id
+            )
+        )->assertJsonFragment($video->toArray());
     
-        $respuesta->assertJsonFragment([
-            'id' => 1,
-            'titulo' => 'Mi titulo',
-            'descripcion' => 'Mi descripcion',
-            'url_video' => 'http://youtube.com/test'
-        ]);
     }
-    }
+}
     

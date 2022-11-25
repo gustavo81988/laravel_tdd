@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/videos/{id}', 'VideosController@get');
+Route::get('/videos/{video}', 'VideosController@get');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
