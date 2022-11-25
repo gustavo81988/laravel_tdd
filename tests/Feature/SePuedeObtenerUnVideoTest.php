@@ -17,7 +17,7 @@ class SePuedeObtenerUnVideoTest extends TestCase
 
         $respuesta = $this->get(
             sprintf(
-                '/api/videos/1',
+                '/api/videos/%s',
                 $video->id
             )
         )->assertJsonFragment($video->toArray());
