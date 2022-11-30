@@ -8,7 +8,10 @@ use App\Video;
 class VideosController extends Controller
 {
     public function index(){
-        return Video::orderBy('created_at','DESC')->get();
+        return Video::select('id','thumbnail')
+            ->orderBy('created_at','DESC')
+            ->get()
+        ;
     }
 
     public function get(Video $video){

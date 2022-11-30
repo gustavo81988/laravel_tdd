@@ -28,10 +28,21 @@ class SePuedeObtenerUnListadoDeVideosTest extends TestCase
 
     public function testElPayloadContieneLosVideosEnElSistema()
     {
-        $videos = factory(Video::class,2)->create();
+        $id        = 12345;
+        $thumbnail = 'http://unaimagen.com';
+        
+        factory(Video::class)->create([
+            'id' => $id,
+            'thumbnail' => $thumbnail
+        ]);
 
         $this->getJson('/api/videos')
-            ->assertJson($videos->toArray())
+            ->assertExactJson([
+                [
+                    'id' => $id,
+                    'thumbnail' => $thumbnail
+                ]
+            ])
         ;
     }
 
